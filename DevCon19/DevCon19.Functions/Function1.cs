@@ -17,6 +17,7 @@ namespace DevCon19.Functions
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
         {
+            Checking in failing code to test Badge updates
             log.LogInformation("C# HTTP trigger function processed a request.");
 
             string name = req.Query["name"];
