@@ -66,8 +66,9 @@ stages:
       inputs:
         testSelector: 'testAssemblies'
         testAssemblyVer2: |
-          **\*test*.dll
-          !**\*TestAdapter.dll
+          **\bin\$(BuildConfiguration)\**\*test*.dll
           !**\obj\**
+          !**\xunit.runner.visualstudio.testadapter.dll
+          !**\xunit.runner.visualstudio.dotnetcore.testadapter.dll
         searchFolder: '$(System.DefaultWorkingDirectory)/DevCon19/DevCon19.Functions.Tests'
         testRunTitle: 'AzFunctions Unit Tests'
