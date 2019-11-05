@@ -19,6 +19,9 @@ variables:
   # Working Directory
   workingDirectory: '$(System.DefaultWorkingDirectory)/DevCon19/DevCon19.Functions'
 
+  #Tests Directory
+  testDirectory: '$(System.DefaultWorkingDirectory)/DevCon19/DevCon19.Functions.Tests'
+
 stages:
 - stage: Build
   displayName: Build stage
@@ -62,6 +65,14 @@ stages:
       vmImage: $(vmImageName)
 
     steps:
+    - task: DotNetCoreCLI@2
+      displayName: Build Test Project
+      inputs:
+        command: 'build'
+        projects: |
+          $(testDirectory)/*.csproj
+        arguments: --configuration Release
+
     - task: VSTest@2
       inputs:
         testSelector: 'testAssemblies'
