@@ -48,7 +48,7 @@ stages:
         
     - task: AzureFileCopy@3
       inputs:
-        SourcePath: '$(System.DefaultWorkingDirectory)/web_publish_output/DevCon19.Web/bin/Release/netstandard2.0/dist'
+        SourcePath: '$(System.DefaultWorkingDirectory)/DevCon19/DevCon19.Web/bin/Release/netstandard2.0/dist'
         azureSubscription: 'Anarcill - Internal (1a4cbd69-9ac0-4828-892e-5b8f729c302b)'
         Destination: 'AzureBlob'
         storage: 'anarcilldevconstorage'
