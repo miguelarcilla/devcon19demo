@@ -49,3 +49,26 @@ stages:
 
     - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       artifact: drop
+
+- stage: Test Functions
+  displayName: Unit test Azure Functions
+  dependsOn: Build
+  condition: succeeded()
+
+  jobs:
+  - deployment: Deploy
+    displayName: Deploy
+    environment: 'development'
+    pool:
+      vmImage: $(vmImageName)
+
+    steps:
+      - task: VSTest@2
+        inputs:
+          testSelector: 'testAssemblies'
+          testAssemblyVer2: |
+            **\*test*.dll
+            !**\*TestAdapter.dll
+            !**\obj\**
+          searchFolder: '$(System.DefaultWorkingDirectory)/DevCon19/DevCon19.Functions.Tests'
+          testRunTitle: 'AzFunctions Unit Tests'
