@@ -34,18 +34,16 @@ stages:
 
     steps:
     - task: UseDotNet@2
-      displayName: 'Install .NET Core 3.0'
+      displayName: 'Install .NET Core SDK'
       inputs:
-        packageType: sdk
-        version: '3.0.100'
-        installationPath: $(Agent.ToolsDirectory)/dotnet
+        version: 3.0.x
+        performMultiLevelLookup: true
 
     - task: DotNetCoreCLI@2
       displayName: Build
       inputs:
         command: 'build'
-        projects: |
-          $(workingDirectory)/*.csproj
+        projects: (workingDirectory)/*.csproj
         arguments: --output $(System.DefaultWorkingDirectory)/publish_output --configuration Release
 
     - task: ArchiveFiles@2
@@ -73,11 +71,10 @@ stages:
 
     steps:
     - task: UseDotNet@2
-      displayName: 'Install .NET Core 3.0'
+      displayName: 'Install .NET Core SDK'
       inputs:
-        packageType: sdk
-        version: '3.0.100'
-        installationPath: $(Agent.ToolsDirectory)/dotnet
+        version: 3.0.x
+        performMultiLevelLookup: true
 
     - task: DotNetCoreCLI@2
       displayName: Build Test Project
