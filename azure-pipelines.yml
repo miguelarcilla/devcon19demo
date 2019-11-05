@@ -19,6 +19,9 @@ variables:
   # Working Directory
   workingDirectory: '$(System.DefaultWorkingDirectory)/DevCon19/DevCon19.Functions'
 
+  #Tests Directory
+  testDirectory: '$(System.DefaultWorkingDirectory)/DevCon19/DevCon19.Functions.Tests'
+
 stages:
 - stage: Build
   displayName: Build stage
@@ -49,3 +52,34 @@ stages:
 
     - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       artifact: drop
+
+- stage: Test
+  displayName: Unit test Azure Functions
+  dependsOn: Build
+  condition: succeeded()
+
+  jobs:
+  - job: Test
+    displayName: Test
+    pool:
+      vmImage: $(vmImageName)
+
+    steps:
+    - task: DotNetCoreCLI@2
+      displayName: Build Test Project
+      inputs:
+        command: 'build'
+        projects: |
+          $(testDirectory)/*.csproj
+        arguments: --output $(System.DefaultWorkingDirectory)/test_output --configuration Release
+
+    - task: VSTest@2
+      inputs:
+        testSelector: 'testAssemblies'
+        testAssemblyVer2: |
+          **\bin\Release\**\*test*.dll
+          !**\obj\**
+          !**\xunit.runner.visualstudio.testadapter.dll
+          !**\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+        searchFolder: '$(System.DefaultWorkingDirectory)/test_output'
+        testRunTitle: 'AzFunctions Unit Tests'
