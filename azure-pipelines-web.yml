@@ -46,10 +46,14 @@ stages:
           $(workingDirectory)/*.csproj
         arguments: --output $(System.DefaultWorkingDirectory)/web_publish_output --configuration Release
         
-    - task: AzureFileCopy@3
+    - task: ArchiveFiles@2
+      displayName: 'Archive files'
       inputs:
-        SourcePath: '$(System.DefaultWorkingDirectory)/DevCon19/DevCon19.Web/bin/Release/netstandard2.0/dist'
-        azureSubscription: 'Anarcill - Internal (1a4cbd69-9ac0-4828-892e-5b8f729c302b)'
-        Destination: 'AzureBlob'
-        storage: 'anarcilldevconstorage'
-        ContainerName: '$web'
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/web_publish_output'
+        includeRootFolder: false
+        archiveType: zip
+        archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+        replaceExistingArchive: true
+
+    - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+      artifact: drop
