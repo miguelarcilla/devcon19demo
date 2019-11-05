@@ -14,7 +14,7 @@ variables:
   functionAppName: 'anarcilldevconfunctions'
 
   # Agent VM image name
-  vmImageName: 'vs2019-win2016'
+  vmImageName: 'windows-latest'
 
   # Working Directory
   workingDirectory: '$(System.DefaultWorkingDirectory)/DevCon19/DevCon19.Functions'
