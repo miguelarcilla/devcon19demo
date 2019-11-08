@@ -1,7 +1,14 @@
-﻿@using System.Net.Http
+﻿@using DevCon19.Web.Components
+@using DevCon19.Web.Models
+@using DevCon19.Web.Services
+@using DevCon19.Web.Shared
+@using System.Net.Http
+@using System.Threading
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.Forms
 @using Microsoft.AspNetCore.Components.Routing
 @using Microsoft.AspNetCore.Components.Web
 @using Microsoft.JSInterop
-@using DevCon19.Web
-@using DevCon19.Web.Shared
+@using Geolocation = AspNetMonsters.Blazor.Geolocation.Location
+@using GeolocationService = AspNetMonsters.Blazor.Geolocation.LocationService
+@using Blazored.LocalStorage

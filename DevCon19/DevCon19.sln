@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevCon19.Web", "DevCon19.We
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevCon19.Functions", "DevCon19.Functions\DevCon19.Functions.csproj", "{6BF7307A-931A-404C-96CA-C59385C97F56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevCon19.Functions.Tests", "DevCon19.Functions.Tests\DevCon19.Functions.Tests.csproj", "{D66D1FF4-00A0-4ED6-8041-1A413CF7A81B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevCon19.Functions.Tests", "DevCon19.Functions.Tests\DevCon19.Functions.Tests.csproj", "{D66D1FF4-00A0-4ED6-8041-1A413CF7A81B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{6BF7307A-931A-404C-96CA-C59385C97F56} = {6BF7307A-931A-404C-96CA-C59385C97F56}
 	EndProjectSection
