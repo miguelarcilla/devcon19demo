@@ -12,6 +12,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevCon19.Functions.Tests", 
 		{6BF7307A-931A-404C-96CA-C59385C97F56} = {6BF7307A-931A-404C-96CA-C59385C97F56}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevCon19.Common", "DevCon19.Common\DevCon19.Common.csproj", "{EFB05553-046C-4783-9353-FE791A8DF82B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +32,10 @@ Global
 		{D66D1FF4-00A0-4ED6-8041-1A413CF7A81B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D66D1FF4-00A0-4ED6-8041-1A413CF7A81B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D66D1FF4-00A0-4ED6-8041-1A413CF7A81B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFB05553-046C-4783-9353-FE791A8DF82B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFB05553-046C-4783-9353-FE791A8DF82B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFB05553-046C-4783-9353-FE791A8DF82B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFB05553-046C-4783-9353-FE791A8DF82B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

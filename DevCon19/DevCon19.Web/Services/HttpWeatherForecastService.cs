@@ -1,4 +1,4 @@
-﻿using DevCon19.Web.Models;
+﻿using DevCon19.Common.Models;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;

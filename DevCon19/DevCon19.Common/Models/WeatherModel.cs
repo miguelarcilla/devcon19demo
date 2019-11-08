@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DevCon19.Web.Models
+namespace DevCon19.Common.Models
 {
     public class Forecast
     {

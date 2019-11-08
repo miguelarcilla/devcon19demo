@@ -1,4 +1,4 @@
-﻿using DevCon19.Web.Models;
+﻿using DevCon19.Common.Models;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;

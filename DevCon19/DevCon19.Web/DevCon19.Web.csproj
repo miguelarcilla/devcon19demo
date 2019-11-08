@@ -17,4 +17,8 @@
     <PackageReference Include="System.Text.Json" Version="4.6.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DevCon19.Common\DevCon19.Common.csproj" />
+  </ItemGroup>
+
 </Project>
