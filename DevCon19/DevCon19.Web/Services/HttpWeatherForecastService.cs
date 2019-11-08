@@ -21,13 +21,21 @@ namespace DevCon19.Web.Services
             _httpClient = httpClient;
             _httpClient.BaseAddress = new Uri("https://dataservice.accuweather.com/");
 
-            //apiKey = configuration["accuweathertoken"];
             apiKey = "2tVmykQlBx5ffu91mVxWRGvxa1PDZxEA";
         }
 
         public async Task<Location[]> GetLocationsByText(string search, CancellationToken cancellationToken)
         {
+            // Query AccuWeather Straight
             using var response = await _httpClient.GetAsync($"locations/v1/cities/US/autocomplete?{GetApiKey()}&q={search}", cancellationToken);
+
+            // Query Azure Functions (Dev)
+            //using var response = await _httpClient.GetAsync($"http://localhost:7071/api/locations?query={search}", cancellationToken);
+
+            // Query Azure Functions (Prod)
+            // Ensure that CORS have been enabled for your website in the Azure Function App Settings
+            //using var response = await _httpClient.GetAsync($"https://anarcilldevconfunctions.azurewebsites.net/api/locations?query={search}", cancellationToken);
+
             using var responseStream = await response.Content.ReadAsStreamAsync();
             return await JsonSerializer.DeserializeAsync<Location[]>(responseStream, cancellationToken: cancellationToken);
         }
