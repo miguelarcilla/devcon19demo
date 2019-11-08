@@ -9,7 +9,7 @@ namespace DevCon19.Functions.Tests
         private readonly ILogger logger = TestFactory.CreateLogger();
 
         [Fact]
-        public async void Http_trigger_should_return_known_string()
+        public async void HttpTrigger_WithValidSingleNameProvided_ReturnsHelloNameResult()
         {
             var request = TestFactory.CreateHttpRequest("name", "Bill");
             var response = (OkObjectResult)await HttpTrigger.Run(request, logger);
@@ -18,7 +18,7 @@ namespace DevCon19.Functions.Tests
 
         [Theory]
         [MemberData(nameof(TestFactory.Data), MemberType = typeof(TestFactory))]
-        public async void Http_trigger_should_return_known_string_from_member_data(string queryStringKey, string queryStringValue)
+        public async void HttpTrigger_WithValidNameSetProvided_ReturnsHelloNameResults(string queryStringKey, string queryStringValue)
         {
             var request = TestFactory.CreateHttpRequest(queryStringKey, queryStringValue);
             var response = (OkObjectResult)await HttpTrigger.Run(request, logger);
@@ -26,7 +26,7 @@ namespace DevCon19.Functions.Tests
         }
 
         [Fact]
-        public void Timer_should_log_message()
+        public void TimerTrigger_WithValidLoggerProvided_LogsMessageSuccessfully()
         {
             var logger = (ListLogger)TestFactory.CreateLogger(LoggerTypes.List);
             TimerTrigger.Run(null, logger);
