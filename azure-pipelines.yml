@@ -14,7 +14,7 @@ variables:
   functionAppName: 'anarcilldevconfunctions'
 
   # Agent VM image name
-  vmImageName: 'vs2017-win2016'
+  vmImageName: 'windows-latest'
 
   # Working Directory
   workingDirectory: '$(System.DefaultWorkingDirectory)/DevCon19/DevCon19.Functions'
@@ -34,11 +34,10 @@ stages:
 
     steps:
     - task: UseDotNet@2
-      displayName: 'Install .NET Core 3.0'
+      displayName: 'Install .NET Core SDK'
       inputs:
-        packageType: sdk
-        version: '3.0.100'
-        installationPath: $(Agent.ToolsDirectory)/dotnet
+        version: 3.0.x
+        performMultiLevelLookup: true
 
     - task: DotNetCoreCLI@2
       displayName: Build
@@ -72,13 +71,6 @@ stages:
       vmImage: $(vmImageName)
 
     steps:
-    - task: UseDotNet@2
-      displayName: 'Install .NET Core 3.0'
-      inputs:
-        packageType: sdk
-        version: '3.0.100'
-        installationPath: $(Agent.ToolsDirectory)/dotnet
-
     - task: DotNetCoreCLI@2
       displayName: Build Test Project
       inputs:

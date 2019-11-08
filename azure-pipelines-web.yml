@@ -8,7 +8,7 @@ trigger:
 
 variables:
   # Agent VM image name
-  vmImageName: 'vs2017-win2016'
+  vmImageName: 'windows-latest'
 
   # Working Directory
   workingDirectory: '$(System.DefaultWorkingDirectory)/DevCon19/DevCon19.Web'
@@ -24,22 +24,27 @@ stages:
       vmImage: $(vmImageName)
 
     steps:
+    - task: UseDotNet@2
+      displayName: 'Install .NET Core SDK'
+      inputs:
+        version: 3.0.x
+        performMultiLevelLookup: true
+
     - task: DotNetCoreCLI@2
       displayName: Build
       inputs:
         command: 'build'
         projects: |
           $(workingDirectory)/*.csproj
-        arguments: --output $(System.DefaultWorkingDirectory)/publish_output --configuration Release
+        arguments: --configuration Release
 
-    - task: ArchiveFiles@2
-      displayName: 'Archive files'
+    - task: DotNetCoreCLI@2
+      displayName: Publish
       inputs:
-        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/publish_output'
-        includeRootFolder: false
-        archiveType: zip
-        archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-        replaceExistingArchive: true
+        command: 'publish'
+        projects: |
+          $(workingDirectory)/*.csproj
+        arguments: --output $(System.DefaultWorkingDirectory)/web_publish_output --configuration Release
 
-    - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+    - publish: '$(System.DefaultWorkingDirectory)/web_publish_output'
       artifact: drop
